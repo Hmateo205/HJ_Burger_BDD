@@ -1,4 +1,9 @@
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using HJ_Burger_BDD.Data;
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddDbContext<HJ_Burger_BDDContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("HJ_Burger_BDDContext") ?? throw new InvalidOperationException("Connection string 'HJ_Burger_BDDContext' not found.")));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
